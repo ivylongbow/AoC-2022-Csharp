@@ -1,7 +1,7 @@
 # Advent of Code 2022 by Troy in C#
 This README is inspired by [Marcus Shu](https://github.com/shulkx/advent-of-code/tree/main/adventofcode2022)
 
-## Progression and Navigation    ![Progress](https://progress-bar.dev/6/?scale=25&title=Days&width=240&suffix=/25)
+## Progression and Navigation    ![Progress](https://progress-bar.dev/7/?scale=25&title=Days&width=240&suffix=/25)
 
 | DAY                                                          | STARS | C#                            | Solution Description |
 | ------------------------------------------------------------ | ----- | ----------------------------- | -------------------- |
@@ -11,7 +11,7 @@ This README is inspired by [Marcus Shu](https://github.com/shulkx/advent-of-code
 | [Day 4: Camp Cleanup](https://adventofcode.com/2022/day/4) | ⭐️⭐️ | [Solution](./Day_04/Day_4_Camp_Cleanup.cs) |                      |
 | [Day 5: Supply Stacks](https://adventofcode.com/2022/day/5) | ⭐️⭐️ | [Solution](./Day_05/Day_5_Supply_Stacks.cs) |                      |
 | [Day 6: Tuning Trouble](https://adventofcode.com/2022/day/6) | ⭐️⭐️ | [Solution](./Day_06/Day_6_Tuning_Trouble.cs) |                      |
-| [Day 7](https://adventofcode.com/2022/day/7)                |       |                               |                      |
+| [Day 7: No Space Left On Device](https://adventofcode.com/2022/day/7) | ⭐️⭐️ | [Solution](./Day_07/Day_7.cs) |                      |
 | [Day 8](https://adventofcode.com/2022/day/8)                |       |                               |                      |
 | [Day 9](https://adventofcode.com/2022/day/9)                |       |                               |                      |
 | [Day 10](https://adventofcode.com/2022/day/10)              |       |                               |                      |
