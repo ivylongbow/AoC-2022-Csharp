@@ -10,5 +10,4 @@ namespace AoC2022
             thisweek.Run();
         }
     }
-
 }
