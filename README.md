@@ -1,7 +1,7 @@
-# AoC-2022-C#
-This README is inspired by [Marcus](https://github.com/shulkx/advent-of-code/tree/main/adventofcode2022)
+# Advent of Code 2022 by Troy in C#
+This README is inspired by [Marcus Shu](https://github.com/shulkx/advent-of-code/tree/main/adventofcode2022)
 
-## Progression and Navigation    ![Progress](https://progress-bar.dev/6/?scale=25&title=Days&suffix=/25)
+## Progression and Navigation    ![Progress](https://progress-bar.dev/6/?scale=25&title=Days&width=240&suffix=/25)
 
 | DAY                                                          | STARS | C#                            | Solution Description |
 | ------------------------------------------------------------ | ----- | ----------------------------- | -------------------- |
