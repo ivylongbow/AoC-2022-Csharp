@@ -1,4 +1,4 @@
-# AoC-2022-Csharp
+# AoC-2022-C#
 This README is inspired by [Marcus](https://github.com/shulkx/advent-of-code/tree/main/adventofcode2022)
 
 ## Progression and Navigation    ![Progress](https://progress-bar.dev/6/?scale=25&title=Days&suffix=/25)
