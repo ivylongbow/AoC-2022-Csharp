@@ -1,7 +1,7 @@
 # Advent of Code 2022 by Troy in C#
 This README is inspired by [Marcus Shu](https://github.com/shulkx/advent-of-code/tree/main/adventofcode2022)
 
-## Progression and Navigation    ![Progress](https://progress-bar.dev/7/?scale=25&title=Days&width=240&suffix=/25)
+## Progression and Navigation    ![Progress](https://progress-bar.dev/11/?scale=25&title=Days&width=240&suffix=/25)
 
 | DAY                                                          | STARS | C#                            | Solution Description |
 | ------------------------------------------------------------ | ----- | ----------------------------- | -------------------- |
@@ -12,10 +12,10 @@ This README is inspired by [Marcus Shu](https://github.com/shulkx/advent-of-code
 | [Day 5: Supply Stacks](https://adventofcode.com/2022/day/5) | ⭐️⭐️ | [Solution](./Day_05/Day_5_Supply_Stacks.cs) |                      |
 | [Day 6: Tuning Trouble](https://adventofcode.com/2022/day/6) | ⭐️⭐️ | [Solution](./Day_06/Day_6_Tuning_Trouble.cs) |                      |
 | [Day 7: No Space Left On Device](https://adventofcode.com/2022/day/7) | ⭐️⭐️ | [Solution](./Day_07/Day_7.cs) |                      |
-| [Day 8](https://adventofcode.com/2022/day/8)                |       |                               |                      |
-| [Day 9](https://adventofcode.com/2022/day/9)                |       |                               |                      |
-| [Day 10](https://adventofcode.com/2022/day/10)              |       |                               |                      |
-| [Day 11](https://adventofcode.com/2022/day/11)              |       |                               |                      |
+| [Day 8: Treetop Tree House](https://adventofcode.com/2022/day/8)                | ⭐️⭐️ | [Solution](./Day_08/Day_8.cs) |                      |
+| [Day 9: Rope Bridge](https://adventofcode.com/2022/day/9)                | ⭐️⭐️ | [Solution](./Day_09/Day_9.cs) |                      |
+| [Day 10: Cathode-Ray Tube](https://adventofcode.com/2022/day/10)              | ⭐️⭐️ | [Solution](./Day_10/Day_10.cs) |                      |
+| [Day 11: Monkey in the Middle](https://adventofcode.com/2022/day/11)              | ⭐️⭐️ | [Solution](./Day_11/Day_11.cs) |                      |
 | [Day 12](https://adventofcode.com/2022/day/12)              |       |                               |                      |
 | [Day 13](https://adventofcode.com/2022/day/13)              |       |                               |                      |
 | [Day 14](https://adventofcode.com/2022/day/14)              |       |                               |                      |
