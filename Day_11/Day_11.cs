@@ -6,7 +6,7 @@
         readonly int x = 11; // x = [1..25]
         public cDay_11()
         {
-            Title = $"--- Day {x}: xxxxxxxx xxxxxxxx ---";
+            Title = $"--- Day {x}: Monkey in the Middle ---";
             inputLines = ReadInput($"input_Day{x}.txt");
             //inputLines = ReadInput("");
         }
