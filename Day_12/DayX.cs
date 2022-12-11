@@ -9,10 +9,11 @@
         {
             Title = $"--- Day {x}: xxxxxxxx xxxxxxxx ---";
             inputLines = ReadInput($"input_Day{x}.txt");
+            //inputLines = ReadInput("");
         }
         public string[] ReadInput(string? fileName)
         {
-            if (fileName == null)
+            if (string.IsNullOrEmpty(fileName))
             {
                 fileName = "input_sample.txt";
             }

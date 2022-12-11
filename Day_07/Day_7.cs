@@ -8,7 +8,7 @@
         readonly CDirectory currentDir;
         public cDay_7()
         {
-            Title = $"--- Day {x}: xxxxxxxx xxxxxxxx ---";
+            Title = $"--- Day {x}: No Space Left On Device ---";
             inputLines = ReadInput($"input_Day{x}.txt");
             RootDirectory = new CDirectory("/", null);
         
