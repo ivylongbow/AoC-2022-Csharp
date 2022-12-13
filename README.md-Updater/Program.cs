@@ -6,9 +6,10 @@ namespace AoC2022
     {
         static void Main()
         {
-            int MaxLength = 0;
-            List<string> Days = new List<string>();
+            // Parsing the solution file for Projects with Name that starts with "Day_[n]_" where [n] is a number indicating the xth day.
             string[] solution = File.ReadAllLines("../../../../AoC-2022-private.sln");
+            int MaxLength = 0;  // this will be the number of qulalified Projects found, which means number of days completed.
+            List<string> Days = new List<string>();
             foreach(string s in solution)
             {
                 if (s.StartsWith("Project("))
@@ -25,11 +26,10 @@ namespace AoC2022
                         }
                     }
                 }
-                else if (s.StartsWith("Global"))
+                else if (s.StartsWith("Global"))    // end the Parsing process.
                     break;
             }
-
-            
+            // Formatting the output string for file "Readme.md"
             int DayProgress = Days.Count;
             List<string> ReadMe = new()
             {
@@ -42,17 +42,17 @@ namespace AoC2022
                 "| DAY                                                          | STARS | C#                            | Solution Description |",
                 "| ------------------------------------------------------------ | ----- | ----------------------------- | -------------------- |"
             };
-            for (int i = 1; i <= 6; i++)
+            for (int i = 1; i <= 6; i++)    // for the first 6 days, the source code file name also includs the name of the challenge.
             {
                 string[] StoryName = Days[i - 1].Split('_');
                 ReadMe.Add($"| [Day {StoryName[0]}: {string.Join(' ', StoryName[1..])}](https://adventofcode.com/2022/day/{i}){new string(' ', MaxLength - Days[i - 1].Length - i.ToString().Length)}| ⭐️⭐️ | [Solution](./Day_{i.ToString("00")}/Day_{Days[i - 1]}.cs){new string(' ', MaxLength - Days[i - 1].Length)}|                      |");
             }
-            for (int i = 7; i<= DayProgress; i++)
+            for (int i = 7; i<= DayProgress; i++)   // starting from day 7, I got lazy, the main source code file naming convension changed to "./Day_[n]/Day_[n].cs"
             {
                 string[] StoryName = Days[i-1].Split('_');
                 ReadMe.Add($"| [Day {StoryName[0]}: {string.Join(' ', StoryName[1..])}](https://adventofcode.com/2022/day/{i}){new string(' ', MaxLength - Days[i - 1].Length - i.ToString().Length)}| ⭐️⭐️ | [Solution](./Day_{i.ToString("00")}/Day_{i}.cs){new string(' ', MaxLength - i.ToString().Length)}|                      |");
             }
-            for (int i = DayProgress + 1; i<= 25; i++)
+            for (int i = DayProgress + 1; i<= 25; i++)  // placeholders for upcoming days
                 ReadMe.Add($"| [Day {i}](https://adventofcode.com/2022/day/{i})              |       |                               |                      |");
 
             File.WriteAllLines("../../../../Readme.md", ReadMe);
