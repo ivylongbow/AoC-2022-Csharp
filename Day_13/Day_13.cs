@@ -37,7 +37,6 @@
         public override string Part2()
         {
             List<Data> allPackets = new();
-
             foreach(Packet packet in packets.Values)
             {
                 allPackets.Add(packet.L);
@@ -68,7 +67,7 @@
         class Data:IComparable<Data>
         {
             public List<Data> Value = new();
-            public Data super;
+            //public Data super;
             public int intValue = -1;
             readonly string remainingString;
             public Data(string input)
@@ -104,7 +103,7 @@
                         ListValue += ",";
                     }
                     ListValue += "]";
-                    return ListValue;
+                    return ListValue.Replace(",]","]").Replace("-1","");
                 }                
             }
             public int CompareTo(Data? other)
@@ -126,8 +125,10 @@
                 {
                     return this.CompareTo(new Data($"[{other.intValue}]"));
                 }
-                else //if (this.Value.Count == 0)
-                    return other.CompareTo(new Data($"[{this.intValue}]")) * -1;
+                else if (this.intValue == -1)
+                    return -1;
+                else
+                    return -other.CompareTo(new Data($"[{this.intValue}]"));
             }
         }
     }

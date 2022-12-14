@@ -29,9 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_11_Monkey_in_the_Middle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_12_Hill_Climbing_Algorithm", "Day_12\Day_12_Hill_Climbing_Algorithm.csproj", "{E4E7C97D-3C5B-421F-8C63-4536931B4E2D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_13_Distress Signal", "Day_13\Day_13_Distress Signal.csproj", "{54C87885-3C4B-4045-8809-D2F89E627305}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_13_Distress_Signal", "Day_13\Day_13_Distress_Signal.csproj", "{54C87885-3C4B-4045-8809-D2F89E627305}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_14_", "Day_14\Day_14_.csproj", "{D003A4B7-706D-4FC6-A21E-D50B42F1ADB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_14_Regolith_Reservoir", "Day_14\Day_14_Regolith_Reservoir.csproj", "{D003A4B7-706D-4FC6-A21E-D50B42F1ADB6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_15_", "Day_15\Day_15_.csproj", "{35CA8CC9-FD91-487D-ACF6-A902A1E3F1DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{D003A4B7-706D-4FC6-A21E-D50B42F1ADB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D003A4B7-706D-4FC6-A21E-D50B42F1ADB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D003A4B7-706D-4FC6-A21E-D50B42F1ADB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35CA8CC9-FD91-487D-ACF6-A902A1E3F1DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35CA8CC9-FD91-487D-ACF6-A902A1E3F1DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35CA8CC9-FD91-487D-ACF6-A902A1E3F1DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35CA8CC9-FD91-487D-ACF6-A902A1E3F1DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
