@@ -4,7 +4,7 @@
     public class cDay_0 : WeekN
     {
         readonly string[] inputLines;
-        readonly int x = 0; // x = [1..25]
+        readonly int x = 18; // x = [1..25]
         public cDay_0()
         {
             Title = $"--- Day {x}: xxxxxxxx xxxxxxxx ---";
