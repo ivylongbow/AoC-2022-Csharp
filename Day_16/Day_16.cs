@@ -23,13 +23,14 @@ namespace AoC2022
         }
         public override string Part1()
         {
-            TheCave.SingleMode();
-            return $"{x}.1 - {TheCave.BestResult}";
+
+            int Part1 = TheCave["AA"].DoSingle(TheCave.WithValve.Keys.ToList(), 30);
+            return $"{x}.1 - {Part1}";
         }
         public override string Part2()
         {
-            TheCave.DualMode();
-            return $"{x}.2 - {TheCave.BestResult}";
+            int Part2 = TheCave["AA"].DoDouble(TheCave.WithValve.Keys.ToList(), 26);
+            return $"{x}.2 - {Part2}";
         }
         class Valve
         {
@@ -38,6 +39,13 @@ namespace AoC2022
             public readonly List<string> Tunnels;
             public readonly Dictionary<string, int> Distance;
             public readonly Rooms Cave;
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="name"></param>
+            /// <param name="flowRate"></param>
+            /// <param name="tunnels"></param>
+            /// <param name="cave"></param>
             public Valve(string name, int flowRate, List<string> tunnels, Rooms cave)
             {
                 Name = name;
@@ -47,6 +55,10 @@ namespace AoC2022
                 Distance = new();
                 Distance.Add(name, 0);
             }
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <returns></returns>
             public bool Explore()
             {
                 bool done = true;
@@ -78,36 +90,66 @@ namespace AoC2022
                 }               
                 return done;
             }
-
-            public int TryPart1(Stack<string> path,int MinutesLeft)
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Uncharted"></param>
+            /// <param name="MinutesLeft"></param>
+            /// <returns></returns>
+            public int DoSingle(List<string> Uncharted,int MinutesLeft)
             {
                 int MaxPressure = 0;
-                foreach (string room in Distance.Keys)
+                foreach (string room in Uncharted)
                 {
-                    if(!path.Contains(room) && MinutesLeft - Distance[room] > 1)
+                    if(MinutesLeft - Distance[room] > 1)
                     {
-                        path.Push(room);
+                        List<string> rest = Uncharted.ToList();
+                        rest.Remove(room);
                         int newPressure = (MinutesLeft - Distance[room] - 1) * Cave[room].FlowRate;
-                        newPressure += Cave[room].TryPart1(path, MinutesLeft - Distance[room] - 1);
+                        newPressure += Cave[room].DoSingle(rest, MinutesLeft - Distance[room] - 1);
                         if (MaxPressure < newPressure)
                             MaxPressure = newPressure;
-                        path.Pop();
                     }
                 }
                 return MaxPressure;// + MinutesLeft * FlowRate;
+            }
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Uncharted"></param>
+            /// <param name="MinutesLeft"></param>
+            /// <returns></returns>
+            public int DoDouble(List<string> Uncharted, int MinutesLeft)
+            {
+                int MaxPressure = 0;
+                foreach (string room in Uncharted)
+                {
+                    if (MinutesLeft - Distance[room] > 1)
+                    {
+                        List<string> rest = Uncharted.ToList();
+                        rest.Remove(room);
+                        int newPressure = (MinutesLeft - Distance[room] - 1) * Cave[room].FlowRate;
+                        newPressure += Cave[room].DoDouble(rest, MinutesLeft - Distance[room] - 1);
+                        if (MaxPressure < newPressure)
+                            MaxPressure = newPressure;
+                    }
+                }
+                if (MaxPressure == 0)
+                    MaxPressure = Cave["AA"].DoSingle(Uncharted, 26);
+                return MaxPressure;
             }
 
         }
         class Rooms : Dictionary<string, Valve>
         {
-            Dictionary<string, Valve> WithValve = new Dictionary<string, Valve>();
-            List<string> WithoutValve = new List<string>();
-            Stack<string> Path1 = new Stack<string>();
-            Stack<string> Path2 = new Stack<string>();
-            public int BestResult;
+            public Dictionary<string, Valve> WithValve = new Dictionary<string, Valve>();
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="inputLines"></param>
             public Rooms(string[] inputLines)
             {
-                foreach(string line in inputLines)
+                foreach (string line in inputLines)
                 {
                     //Valve AA has flow rate=0; tunnels lead to valves DD, II, BB
                     Match m = Regex.Match(line, @"Valve ([A-Z]+) has flow rate=(\d+); \w+ \w+ to \w+ ([A-Z,\s]+)");
@@ -116,6 +158,7 @@ namespace AoC2022
                     string[] _tunnels = m.Groups[3].Value.Split(',',StringSplitOptions.TrimEntries);
                     this.Add(_name, new Valve( _name, _flowRate, _tunnels.ToList(), this));
                 }
+                //
                 bool done = false;
                 while (!done)
                 {
@@ -123,7 +166,9 @@ namespace AoC2022
                     foreach (string room in this.Keys)
                         done &= this[room].Explore();
                 }
-                foreach(string room in this.Keys)
+                //
+                List<string> WithoutValve = new List<string>();
+                foreach (string room in this.Keys)
                 {
                     if (this[room].FlowRate > 0)
                         WithValve.Add(room, this[room]);
@@ -138,95 +183,87 @@ namespace AoC2022
                 }                
             }
 
-            public void SingleMode()
-            {
-                BestResult = this["AA"].TryPart1(Path1, 30);
-            }
-            public void DualMode()
-            {
+            // Obsolited! Don't bother read
+            //
+            //Stack<string> Path1 = new Stack<string>();
+            //Stack<string> Path2 = new Stack<string>();
+            //public int BestResult;
+            //
+            //public void SingleMode()
+            //{
+            //    BestResult = this["AA"].DoSingle(WithValve.Keys.ToList(), 30);
+            //}
+            //public void DualMode()
+            //{
+            //    BestResult = this["AA"].DoDouble(WithValve.Keys.ToList(), 26);
+            //    //Path1.Clear();
+            //    //Path2.Clear();
+            //    //Path1.Push("AA");
+            //    //Path2.Push("AA");
+            //    //BestResult = TryPart2(26,26);
 
-                Path1.Clear();
-                Path2.Clear();
-                Path1.Push("AA");
-                Path2.Push("AA");
-                BestResult = TryPart2(26,26);
+            //}
+            //public void PlotCave()
+            //{
+            //    foreach (string room in WithValve.Keys)
+            //    {
+            //        foreach (string connection in this[room].Distance.Keys)
+            //            Console.WriteLine($"{room}, {connection}, {this[room].Distance[connection]}");
+            //    }
+            //}
+            // Obsolited, slow algo!
+            //public int TryPart2(int MinutesLeft1, int MinutesLeft2)
+            //{
+            //    int MaxPressure = 0;
+            //    string currentRoom1 = Path1.Peek();
+            //    string currentRoom2 = Path2.Peek();
 
-            }
-            public void PlotCave()
-            {
-                foreach (string room in WithValve.Keys)
-                {
-                    foreach (string connection in this[room].Distance.Keys)
-                        Console.WriteLine($"{room}, {connection}, {this[room].Distance[connection]}");
-                }
-            }
-            public void Prooning()
-            {
-                foreach(string room1 in WithValve.Keys)
-                    foreach(string room2 in WithValve.Keys)
-                        if(room1 != room2 && this[room1].Distance.ContainsKey(room2))
-                            foreach(string midRoom in WithValve.Keys)
-                                if (room1 != midRoom && room2 != midRoom && this[room1].Distance.ContainsKey(midRoom) && this[room2].Distance.ContainsKey(midRoom))
-                                    if (this[room1].Distance[room2] == this[room1].Distance[midRoom] + this[room2].Distance[midRoom])
-                                    {
-                                        this[room1].Distance.Remove(room2);
-                                        this[room2].Distance.Remove(room1);
-                                        Console.WriteLine($"{room1}-{room2}");
-                                        break;
-                                    }
-            }
-            public int TryPart2(int MinutesLeft1, int MinutesLeft2)
-            {
-                int MaxPressure = 0;
-                string currentRoom1 = Path1.Peek();
-                string currentRoom2 = Path2.Peek();
+            //    foreach (string room in WithValve.Keys.Except(Path1).Except(Path2))
+            //    {
+            //        int _minutesLeft1 = MinutesLeft1 - this[currentRoom1].Distance[room] -1;
+            //        int _minutesLeft2 = MinutesLeft2 - this[currentRoom2].Distance[room] -1;
+            //        if (_minutesLeft1 > _minutesLeft2)
+            //        {
+            //            if (_minutesLeft1 > 0)
+            //            {
+            //                Path1.Push(room);
+            //                int newPressure = _minutesLeft1 * this[room].FlowRate;
+            //                newPressure +=    TryPart2(_minutesLeft1, MinutesLeft2);
+            //                if (MaxPressure < newPressure)
+            //                    MaxPressure = newPressure;
+            //                Path1.Pop();
+            //            }
+            //        }
+            //        else
+            //        {
+            //            if (_minutesLeft2 > 0)
+            //            {
+            //                Path2.Push(room);
+            //                int newPressure = (_minutesLeft2) * this[room].FlowRate;
+            //                newPressure += TryPart2(MinutesLeft1, _minutesLeft2);
+            //                if (MaxPressure < newPressure)
+            //                    MaxPressure = newPressure;
+            //                Path2.Pop();
+            //            }
+            //        }
 
-                foreach (string room in WithValve.Keys.Except(Path1).Except(Path2))
-                {
-                    int _minutesLeft1 = MinutesLeft1 - this[currentRoom1].Distance[room] -1;
-                    int _minutesLeft2 = MinutesLeft2 - this[currentRoom2].Distance[room] -1;
-                    if (_minutesLeft1 > _minutesLeft2)
-                    {
-                        if (_minutesLeft1 > 0)
-                        {
-                            Path1.Push(room);
-                            int newPressure = _minutesLeft1 * this[room].FlowRate;
-                            newPressure +=    TryPart2(_minutesLeft1, MinutesLeft2);
-                            if (MaxPressure < newPressure)
-                                MaxPressure = newPressure;
-                            Path1.Pop();
-                        }
-                    }
-                    else
-                    {
-                        if (_minutesLeft2 > 0)
-                        {
-                            Path2.Push(room);
-                            int newPressure = (_minutesLeft2) * this[room].FlowRate;
-                            newPressure += TryPart2(MinutesLeft1, _minutesLeft2);
-                            if (MaxPressure < newPressure)
-                                MaxPressure = newPressure;
-                            Path2.Pop();
-                        }
-                    }
-
-                }
-                if (MinutesLeft1 > 20 || MinutesLeft1 > 20)
-                {
-                    Console.WriteLine("");
-                    Console.WriteLine("1");
-                    foreach (string s in Path1)
-                        Console.Write($">>{s}");
-                    Console.WriteLine("");
-                    Console.WriteLine("2");
-                    foreach (string s in Path2)
-                        Console.Write($">>{s}");
-                    Console.WriteLine("");
-                }
+            //    }
+            //    if (MinutesLeft1 > 20 || MinutesLeft1 > 20)
+            //    {
+            //        Console.WriteLine("");
+            //        Console.WriteLine("1");
+            //        foreach (string s in Path1)
+            //            Console.Write($">>{s}");
+            //        Console.WriteLine("");
+            //        Console.WriteLine("2");
+            //        foreach (string s in Path2)
+            //            Console.Write($">>{s}");
+            //        Console.WriteLine("");
+            //    }
 
 
-                return MaxPressure;// + MinutesLeft * FlowRate;
-            }
+            //    return MaxPressure;// + MinutesLeft * FlowRate;
+            //}
 
         }
     }
