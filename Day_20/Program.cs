@@ -6,8 +6,9 @@ namespace AoC2022
     {
         static void Main()
         {
-            WeekN thisweek = new cDay_18();
+            WeekN thisweek = new cDay_0();
             thisweek.Run();
         }
     }
+
 }
