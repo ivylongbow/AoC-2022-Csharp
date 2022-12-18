@@ -1,6 +1,5 @@
 ﻿namespace AoC2022
-{
-    
+{    
     public class cDay_17 : WeekN
     {
         readonly string[] inputLines;

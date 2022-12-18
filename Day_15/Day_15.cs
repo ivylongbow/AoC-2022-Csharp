@@ -1,8 +1,7 @@
 ﻿using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 namespace AoC2022
-{
-    
+{    
     public class cDay_15 : WeekN
     {
         readonly string[] inputLines;
