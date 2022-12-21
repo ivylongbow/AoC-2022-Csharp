@@ -41,9 +41,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_17_Pyroclastic Flow", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_18_Boiling Boulders", "Day_18\Day_18_Boiling Boulders.csproj", "{78366854-1B44-4018-8C8F-85D8B112A32D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_19_", "Day_19\Day_19_.csproj", "{2CEAA6DF-5122-4DA9-8E77-ABB6864FBD81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_19_Not Enough Minerals", "Day_19\Day_19_Not Enough Minerals.csproj", "{2CEAA6DF-5122-4DA9-8E77-ABB6864FBD81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_20_", "Day_20\Day_20_.csproj", "{A915E37F-F31B-48E1-A7ED-4028A8A918B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_20_Grove Positioning System", "Day_20\Day_20_Grove Positioning System.csproj", "{A915E37F-F31B-48E1-A7ED-4028A8A918B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_21_", "Day_21\Day_21_.csproj", "{D3D7C315-0486-477D-96CA-B5663029128E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,10 @@ Global
 		{A915E37F-F31B-48E1-A7ED-4028A8A918B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A915E37F-F31B-48E1-A7ED-4028A8A918B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A915E37F-F31B-48E1-A7ED-4028A8A918B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D7C315-0486-477D-96CA-B5663029128E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D7C315-0486-477D-96CA-B5663029128E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D7C315-0486-477D-96CA-B5663029128E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D7C315-0486-477D-96CA-B5663029128E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

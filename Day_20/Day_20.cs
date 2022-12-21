@@ -8,7 +8,7 @@
 
         public cDay_20()
         {
-            Title = $"--- Day {x}: xxxxxxxx xxxxxxxx ---";
+            Title = $"--- Day {x}: Grove Positioning System ---";
             inputLines = ReadInput($"input_Day{x}.txt");
             //inputLines = ReadInput("");
             

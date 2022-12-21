@@ -1,10 +1,10 @@
 ﻿namespace AoC2022
 {    
-    public class cDay_0 : WeekN
+    public class cDay_21 : WeekN
     {
         readonly string[] inputLines;
-        readonly int x = 0; // x = [1..25]
-        public cDay_0()
+        readonly int x = 21; // x = [1..25]
+        public cDay_21()
         {
             Title = $"--- Day {x}: xxxxxxxx xxxxxxxx ---";
             inputLines = ReadInput($"input_Day{x}.txt");
