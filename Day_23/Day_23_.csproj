@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="input_Day0.txt" />
+    <None Remove="input_Day23.txt" />
     <None Remove="input_sample.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="input_Day0.txt">
+    <Content Include="input_Day23.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="input_sample.txt">

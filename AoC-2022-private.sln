@@ -45,7 +45,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_19_Not Enough Minerals"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_20_Grove Positioning System", "Day_20\Day_20_Grove Positioning System.csproj", "{A915E37F-F31B-48E1-A7ED-4028A8A918B6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_21_", "Day_21\Day_21_.csproj", "{D3D7C315-0486-477D-96CA-B5663029128E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_21_Monkey Math", "Day_21\Day_21_Monkey Math.csproj", "{D3D7C315-0486-477D-96CA-B5663029128E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_22_Monkey Map", "Day_22\Day_22_Monkey Map.csproj", "{39292A90-DF76-4811-A5DB-984DA93307EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_23_", "Day_23\Day_23_.csproj", "{2EEFD499-94A6-43E6-9FCC-336862FDC9BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +145,14 @@ Global
 		{D3D7C315-0486-477D-96CA-B5663029128E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3D7C315-0486-477D-96CA-B5663029128E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3D7C315-0486-477D-96CA-B5663029128E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39292A90-DF76-4811-A5DB-984DA93307EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39292A90-DF76-4811-A5DB-984DA93307EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39292A90-DF76-4811-A5DB-984DA93307EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39292A90-DF76-4811-A5DB-984DA93307EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EEFD499-94A6-43E6-9FCC-336862FDC9BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EEFD499-94A6-43E6-9FCC-336862FDC9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EEFD499-94A6-43E6-9FCC-336862FDC9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EEFD499-94A6-43E6-9FCC-336862FDC9BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
