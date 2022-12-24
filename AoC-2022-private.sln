@@ -51,7 +51,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_22_Monkey Map", "Day_22
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_23_Unstable Diffusion", "Day_23\Day_23_Unstable Diffusion.csproj", "{2EEFD499-94A6-43E6-9FCC-336862FDC9BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_24_", "Day_24\Day_24_.csproj", "{2ACB3B3A-0485-4E45-806B-8E66D149CEA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_24_Blizzard Basin", "Day_24\Day_24_Blizzard Basin.csproj", "{2ACB3B3A-0485-4E45-806B-8E66D149CEA9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day_25_", "Day_25\Day_25_.csproj", "{CBAF0304-AA4E-4D87-B600-C19EA2F938AE}"
 EndProject
