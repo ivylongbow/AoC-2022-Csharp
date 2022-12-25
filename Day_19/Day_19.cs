@@ -28,6 +28,7 @@ namespace AoC2022
                 Blueprint B = new(inputLines[i], 24);
                 B.Play();
                 part1 += B.BestScore() * (i+1);
+                //part1 += B.GetBestResult() * (i + 1);
                 Console.WriteLine(part1);
             }
             return $"{x}.1 - {part1}";
@@ -39,12 +40,13 @@ namespace AoC2022
             {
                 Blueprint B = new(inputLines[i], 32);
                 B.Play();
-                part2 *= B.BestScore();
+                part2 = B.BestScore();
+                //part2 = B.GetBestResult();
                 Console.WriteLine(part2);
             }
             return $"{x}.2 - {part2}";
         }
-        class resource
+        struct resource
         {
             public int ore;
             public int clay;
@@ -82,20 +84,22 @@ namespace AoC2022
             }
             public static resource operator ^(resource A, int x)
             {
-                if (x%4 ==0)
+                if (x % 4 == 0)
                     return new resource(A.ore + 1, A.clay, A.obsidian, A.geode);
                 else if (x % 4 == 1)
                     return new resource(A.ore, A.clay + 1, A.obsidian, A.geode);
                 else if (x % 4 == 2)
                     return new resource(A.ore, A.clay, A.obsidian + 1, A.geode);
-                else //if (x % 4 == 3)
+                else if (x % 4 == 3)
                     return new resource(A.ore, A.clay, A.obsidian, A.geode + 1);
+                else
+                    return A;
             }
             public static int operator /(resource A, resource B)
             {
                 int result_ore;
                 if (B.ore != 0)
-                    result_ore = A.ore / B.ore;
+                    result_ore = (int)Math.Ceiling((double)A.ore / B.ore);
                 else if (A.ore != 0)
                     result_ore = 9999;
                 else
@@ -103,7 +107,7 @@ namespace AoC2022
                 //
                 int result_clay;
                 if (B.clay != 0)
-                    result_clay = A.clay / B.clay;
+                    result_clay = (int)Math.Ceiling((double)A.clay / B.clay);
                 else if (A.clay != 0)
                     result_clay = 9999;
                 else
@@ -111,7 +115,7 @@ namespace AoC2022
                 //
                 int result_obsidian;
                 if (B.obsidian != 0)
-                    result_obsidian = A.obsidian / B.obsidian;
+                    result_obsidian = (int)Math.Ceiling((double)A.obsidian / B.obsidian);
                 else if (A.obsidian != 0)
                     result_obsidian = 9999;
                 else
@@ -246,7 +250,7 @@ namespace AoC2022
                 return this_best;
             }
 
-            public void Play2()
+            public int GetBestResult()
             {
                 Queue<(int time, resource Balance, resource Robots )> Q = new();
                 
@@ -260,11 +264,36 @@ namespace AoC2022
                     resource Robots;
                     (t,Balance,Robots) = Q.Dequeue();
 
+                    // if(seen) continue
+                    string NewID = $"{t},{Balance},{Robots}";
+                    if (!History.ContainsKey(NewID))
+                        History.Add(NewID, this);
+                    else
+                        continue;
+
                     int t_geo = (RobotPrice["geode"] - Balance) / Robots + 1;
-                    if (t_geo < TimeLimit)
-                        Q.Enqueue(( t + t_geo, Balance + Robots * t_geo - RobotPrice["geode"], Robots^3));
+                    if (t + t_geo < TimeLimit)
+                        Q.Enqueue((t + t_geo, Balance + Robots * t_geo - RobotPrice["geode"], Robots ^ 3));
+
+                    int t_obs = (RobotPrice["obsidian"] - Balance) / Robots + 1;
+                    if (t + t_obs < TimeLimit - 2)
+                        Q.Enqueue((t + t_obs, Balance + Robots * t_obs - RobotPrice["obsidian"], Robots ^ 2));
+                    
+                    int t_cly = (RobotPrice["clay"] - Balance) / Robots + 1;
+                    if (t + t_cly < TimeLimit - 4)
+                        Q.Enqueue((t + t_cly, Balance + Robots * t_cly - RobotPrice["clay"], Robots ^ 1));
+
+                    int t_ore = (RobotPrice["ore"] - Balance) / Robots + 1;
+                    if (t + t_ore < TimeLimit - 2)
+                        Q.Enqueue((t + t_ore, Balance + Robots * t_ore - RobotPrice["ore"], Robots ^ 0));
+
+                    Balance += Robots * (TimeLimit - t);
+                    if (Balance.geode > bestresult)
+                        bestresult = Balance.geode;
+
 
                 }
+                return bestresult;
 
             }
         }
