@@ -40,7 +40,7 @@ namespace AoC2022
             {
                 Blueprint B = new(inputLines[i], 32);
                 B.Play();
-                part2 = B.BestScore();
+                part2 *= B.BestScore();
                 //part2 = B.GetBestResult();
                 Console.WriteLine(part2);
             }
@@ -130,6 +130,9 @@ namespace AoC2022
             int time;
             static Dictionary<string, Blueprint> History = new();
             static Dictionary<string, resource> RobotPrice =new();
+            static int MaxNeedForOre;
+            static int MaxNeedForClay;
+            static int MaxNeedForObsidian;
             static int TimeLimit = 0;
             public resource Balance;
             public resource Robots;
@@ -157,6 +160,12 @@ namespace AoC2022
                 RobotPrice.Add("clay", new resource(clay_ore, 0, 0, 0));
                 RobotPrice.Add("obsidian", new resource(obsidian_ore, obsidian_clay, 0, 0));
                 RobotPrice.Add("geode", new resource(geode_ore, 0, geode_obsidian, 0));
+                MaxNeedForOre=Math.Max(ore_ore, clay_ore);
+                MaxNeedForOre = Math.Max(MaxNeedForOre, obsidian_ore);
+                MaxNeedForOre = Math.Max(MaxNeedForOre, geode_ore);
+                MaxNeedForClay = obsidian_clay;
+                MaxNeedForObsidian = geode_obsidian;
+
                 TimeLimit = PlayTime;
             }
             public Blueprint(Blueprint lastMinute, resource robotBuilt, resource resourceChange, int time)
@@ -164,6 +173,15 @@ namespace AoC2022
                 this.time = time;
                 Balance = lastMinute.Balance - resourceChange - robotBuilt;
                 Robots  = lastMinute.Robots + robotBuilt;
+
+                if (Balance.ore > MaxNeedForOre * (TimeLimit - time - 1) - Robots.ore * (TimeLimit - time - 1))
+                    Balance.ore = MaxNeedForOre * (TimeLimit - time - 1) - Robots.ore * (TimeLimit - time - 1);
+                if (Balance.clay > MaxNeedForClay * (TimeLimit - time - 1) - Robots.clay * (TimeLimit - time - 1))
+                    Balance.clay = MaxNeedForClay * (TimeLimit - time - 1) - Robots.clay * (TimeLimit - time - 1);
+                if (Balance.obsidian > MaxNeedForObsidian * (TimeLimit - time - 1) - Robots.obsidian * (TimeLimit - time - 1))
+                    Balance.obsidian = MaxNeedForObsidian * (TimeLimit - time - 1) - Robots.obsidian * (TimeLimit - time - 1);
+
+
                 ID = ToString();
             }
             public override string ToString()
@@ -200,23 +218,18 @@ namespace AoC2022
                         Blueprint Universe = new Blueprint(this, new resource(0, 0, 0, 1), RobotPrice["geode"], t + 1);
                         NewID = Universe.ToString();
                         MultiUniverse.Add(NewID, Universe);
-                        //if (!History.ContainsKey(NewID))
-                        //    History.Add(NewID, this);
                         Universe.Play();
-                        //break;
                     }
                     //
-                    if (!Affordable_obsidian && Balance.Affordable(RobotPrice["obsidian"]))
+                    if (!Affordable_obsidian && Balance.Affordable(RobotPrice["obsidian"]) && Robots.ore < MaxNeedForObsidian)
                     {
                         Blueprint Universe = new Blueprint(this, new resource(0, 0, 1, 0), RobotPrice["obsidian"], t + 1);
                         NewID = Universe.ToString();
                         MultiUniverse.Add(NewID, Universe);
-                        //if (!History.ContainsKey(NewID))
-                        //    History.Add(NewID, this);
                         Universe.Play();
                     }
                     //
-                    if (!Affordable_clay && Balance.Affordable(RobotPrice["clay"]))
+                    if (!Affordable_clay && Balance.Affordable(RobotPrice["clay"]) && Robots.ore < MaxNeedForClay)
                     {
                         Blueprint Universe = new Blueprint(this, new resource(0, 1, 0, 0), RobotPrice["clay"], t + 1);
                         NewID = Universe.ToString();
@@ -226,7 +239,7 @@ namespace AoC2022
                         Universe.Play();
                     }
                     //
-                    if (!Affordable_ore && Balance.Affordable(RobotPrice["ore"]))
+                    if (!Affordable_ore && Balance.Affordable(RobotPrice["ore"]) && Robots.ore < MaxNeedForOre)
                     {
                         Blueprint Universe = new Blueprint(this, new resource(1, 0, 0, 0), RobotPrice["ore"], t + 1);
                         NewID = Universe.ToString();
