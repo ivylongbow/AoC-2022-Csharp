@@ -10,7 +10,6 @@ namespace AoC2022
             Title = $"--- Day {x}: xxxxxxxx xxxxxxxx ---";
             inputLines = ReadInput($"input_Day{x}.txt");
             //inputLines = ReadInput("");
-            //solution = new Part1(inputLines);
         }
         public string[] ReadInput(string? fileName)
         {
@@ -28,21 +27,21 @@ namespace AoC2022
                 Blueprint B = new(inputLines[i], 24);
                 B.Play();
                 part1 += B.BestScore() * (i+1);
-                //part1 += B.GetBestResult() * (i + 1);
-                Console.WriteLine(part1);
+                //part1 = B.GetBestResult();    // Obsolited, works much slower than class, don't know why...
+                //Console.WriteLine(part1);
             }
             return $"{x}.1 - {part1}";
         }
         public override string Part2()
         {
             int part2 = 1;
-            for (int i = 2; i >= 0 ; i--)
+            for (int i = 0; i < 3; i++)
             {
                 Blueprint B = new(inputLines[i], 32);
                 B.Play();
                 part2 *= B.BestScore();
-                //part2 = B.GetBestResult();
-                Console.WriteLine(part2);
+                //part2 = B.GetBestResult();    // Obsolited, works much slower than class, don't know why...
+                //Console.WriteLine(part2);
             }
             return $"{x}.2 - {part2}";
         }
@@ -173,7 +172,9 @@ namespace AoC2022
                 this.time = time;
                 Balance = lastMinute.Balance - resourceChange - robotBuilt;
                 Robots  = lastMinute.Robots + robotBuilt;
-
+                // key point is to limit the unlimited possibilities
+                // here if Balance is enough to cover building of a robot each day, then extra balance should be ignored!!!
+                // insight from https://github.com/jonathanpaulson/AdventOfCode/blob/master/2022/19.py
                 if (Balance.ore > MaxNeedForOre * (TimeLimit - time - 1) - Robots.ore * (TimeLimit - time - 1))
                     Balance.ore = MaxNeedForOre * (TimeLimit - time - 1) - Robots.ore * (TimeLimit - time - 1);
                 if (Balance.clay > MaxNeedForClay * (TimeLimit - time - 1) - Robots.clay * (TimeLimit - time - 1))
@@ -263,6 +264,10 @@ namespace AoC2022
                 return this_best;
             }
 
+            /// <summary>
+            /// Obsolited code, works much slower than class, don't know why...
+            /// </summary>
+            /// <returns></returns>
             public int GetBestResult()
             {
                 Queue<(int time, resource Balance, resource Robots )> Q = new();
@@ -303,11 +308,8 @@ namespace AoC2022
                     Balance += Robots * (TimeLimit - t);
                     if (Balance.geode > bestresult)
                         bestresult = Balance.geode;
-
-
                 }
                 return bestresult;
-
             }
         }
     }

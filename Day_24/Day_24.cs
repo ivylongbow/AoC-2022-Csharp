@@ -153,6 +153,13 @@
                 }
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="startCoord"></param>
+        /// <param name="endCorrd"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public int BeginJourney(Coord startCoord, Coord endCorrd, int t)
         {
             for (int retry = 0; retry < t_max; retry++)

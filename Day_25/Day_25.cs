@@ -23,22 +23,22 @@
             long Sum = 0;
             foreach(string line in inputLines)
             {
-                Numbers number = new Numbers(line);
+                SNAFU_Number number = new SNAFU_Number(line);
                 Sum += number.Decimal;
-                Console.WriteLine(number.Decimal);
+                //Console.WriteLine(number.Decimal);
             }
-            Console.WriteLine(Sum);
-            return $"{x}.1 - {Numbers.ToSNAFU(Sum)}";
+            //Console.WriteLine(Sum);
+            return $"{x}.1 - {SNAFU_Number.ToSNAFU(Sum)}";
         }
         public override string Part2()
         {
             return $"{x}.2 - {"Merry Christmas! Ho~Ho~Ho~~!"}";
         }
-        class Numbers
+        class SNAFU_Number
         {
             public long Decimal = 0;
             string SNAFU = "";
-            public Numbers(string SNAFU)
+            public SNAFU_Number(string SNAFU)
             {
                 this.SNAFU = SNAFU;
                 foreach(char c in SNAFU)
